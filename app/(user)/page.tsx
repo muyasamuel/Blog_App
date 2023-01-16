@@ -1,9 +1,37 @@
-import React from 'react'
+import { previewData } from "next/headers";
+import { groq } from "next-sanity";
+import { client } from "../../lib/sanity.client";
+import PreviewSuspense from "../../components/PreviewSuspense";
 
-function HomePage() {
-  return (
-    <div className='text-2xl'></div>
-  )
+const query = groq`
+  *[_type=='post']{
+    ...,
+    author->,
+    categories[]->
+  } | order(_createdAt desc)
+`;
+async function HomePage() {
+  if (previewData()) {
+    return (
+      <PreviewSuspense
+        fallback={
+          <div role="status">
+            <p className="text-center text-lg animate-pulse text text-[#F7AB0A] ">
+              Loading Preview Data
+            </p>
+          </div>
+        }
+      >
+        
+      </PreviewSuspense>
+    );
+  }
+
+
+  const posts = client.fetch(query);
+  return <div> </div>
+
+
 }
 
 export default HomePage;
