@@ -5,6 +5,6 @@ module.exports = {
     appDir: true
   },
   images: {
-    domains: ["images.pexels.com"]
+    domains: ["images.pexels.com", "cdn.sanity.io"]
   }
 }
