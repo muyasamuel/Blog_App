@@ -5,6 +5,7 @@ import { schemaTypes } from "./schemas";
 import { myTheme } from "./theme";
 import StudioNavbar from "./components/StudioNavbar";
 import logo from "./components/logo";
+import { getDefaultDocumentNode } from "./structure";
 
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!;
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!;
@@ -15,7 +16,9 @@ export default defineConfig({
   title: "Njomo Content Studio",
   projectId,
   dataset,
-  plugins: [deskTool(), visionTool()],
+  plugins: [deskTool({
+    defaultDocumentNode: getDefaultDocumentNode 
+  }), visionTool()],
   schema: {
     types: schemaTypes,
   },
