@@ -20,7 +20,7 @@ export default async function HomePage() {
         fallback={
           <div role="status">
             <p className="text-center text-lg animate-pulse text text-[#F7AB0A] ">
-              Loading Preview Data
+              Loading Preview Data...
             </p>
           </div>
         }
